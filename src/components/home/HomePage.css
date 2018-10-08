@@ -1,0 +1,15 @@
+.container {
+  position: relative;
+  min-height: 100%;
+}
+
+.canvas {
+    display: none;
+}
+
+.canvas-show {
+    display: block;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
