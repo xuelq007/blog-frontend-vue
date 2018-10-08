@@ -19,6 +19,10 @@ export default {
 
   mounted () {
     document.addEventListener('click', this.hideAbout)
+
+    document.body.addEventListener('touchmove', function (event) {
+      event.preventDefault()
+    }, false)
   },
 
   unmounted () {
