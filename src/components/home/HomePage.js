@@ -18,14 +18,12 @@ export default {
   },
 
   mounted () {
+    document.addEventListener('touchstart', this.hideAbout)
     document.addEventListener('click', this.hideAbout)
-
-    document.body.addEventListener('touchmove', function (event) {
-      event.preventDefault()
-    }, false)
   },
 
   unmounted () {
+    document.removeEventListener('touchstart', this.hideAbout)
     document.removeEventListener('click', this.hideAbout)
   },
 
