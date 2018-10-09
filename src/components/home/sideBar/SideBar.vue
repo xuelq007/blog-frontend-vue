@@ -1,4 +1,6 @@
 <template>
+
+<div>
     <div class="side-bar">
         <div class="overlay"></div>
         <div class="intrude-less">
@@ -16,8 +18,9 @@
                     </ul>
                 </nav>
                 <nav class="header-smart-menu">
+                    <a @click="dialogVisible = true" href="javascript:void(0)">管理</a>
                     <a href="javascript:void(0)">所有文章</a>
-                    <a v-on:click="$emit('show-about', $event, 'pc')" href="javascript:void(0)">关于我</a>
+                    <a @click="$emit('show-about', $event, 'pc')" href="javascript:void(0)">关于我</a>
                 </nav>
                 <nav class="header-nav">
                 <div class="social">
@@ -32,6 +35,21 @@
             </header>
         </div>
     </div>
+
+    <el-dialog
+      title="管理员验证"
+      :visible.sync="dialogVisible"
+      width="30%"
+      :before-close="handleClose">
+      <el-input v-model.trim="user" placeholder="用户名" :style="{marginBottom: '20px'}"></el-input>
+      <el-input type="password" v-model.trim="password" placeholder="密码"></el-input>
+      <div v-if="errorUser" :style="{color: 'red', textAlign: 'left', marginTop: '20px'}">用户名或密码不正确</div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="handleCancel">取 消</el-button>
+        <el-button type="primary" @click="validateUser">确 定</el-button>
+      </span>
+    </el-dialog>
+</div>
 
 </template>
 
