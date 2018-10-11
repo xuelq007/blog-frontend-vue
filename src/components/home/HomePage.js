@@ -47,6 +47,9 @@ export default {
 
     hideAbout: function () {
       let contentDom = document.querySelector('#content')
+      if (!contentDom) {
+        return
+      }
       let aboutDom = document.querySelector('#about')
       let canvas = document.querySelector('#canvas')
       let mobileMask = contentDom.querySelector('.mobile-mask')

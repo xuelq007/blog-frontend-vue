@@ -40,9 +40,10 @@
       title="管理员验证"
       :visible.sync="dialogVisible"
       width="30%"
-      :before-close="handleClose">
+      :before-close="handleClose"
+      >
       <el-input v-model.trim="user" placeholder="用户名" :style="{marginBottom: '20px'}"></el-input>
-      <el-input type="password" v-model.trim="password" placeholder="密码"></el-input>
+      <el-input type="password" v-model.trim="password" placeholder="密码" @keyup.enter.native="validateUser"></el-input>
       <div v-if="errorUser" :style="{color: 'red', textAlign: 'left', marginTop: '20px'}">用户名或密码不正确</div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="handleCancel">取 消</el-button>
