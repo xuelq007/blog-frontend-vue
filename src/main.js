@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
+
 import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
@@ -11,9 +12,20 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 
 /* eslint-disable no-new */
-new Vue({
+let app = new Vue({
   el: '#app',
   router,
   components: { App },
   template: '<App/>'
 })
+
+window.mountApp = () => {
+  app.$mount('#app')
+}
+if (process.env.NODE_ENV === 'production') {
+  if (window.STYLE_READY) {
+    window.mountApp()
+  }
+} else {
+  window.mountApp()
+}
