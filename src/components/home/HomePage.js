@@ -1,6 +1,7 @@
 import SideBar from '@/components/home/sideBar/SideBar.vue'
 import About from '@/components/home/about/About.vue'
 import MainContent from '@/components/home/mainContent/MainContent.vue'
+import GoTop from '@/components/top/Top.vue'
 
 export default {
   name: 'HomePage',
@@ -8,7 +9,8 @@ export default {
   components: {
     SideBar,
     About,
-    MainContent
+    MainContent,
+    GoTop
   },
 
   data () {
