@@ -119,6 +119,12 @@ const webpackConfig = merge(baseWebpackConfig, {
         from: path.resolve(__dirname, '../static'),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
+      },
+      // add service worker file to dist
+      {
+        from: path.resolve(__dirname, '../src/sw/sw.js'),
+        to: config.build.assetsRoot,
+        ignore: ['.*']
       }
     ]),
 
