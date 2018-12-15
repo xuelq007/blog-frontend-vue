@@ -1,6 +1,6 @@
 {
     "name": "小果小站",
-    "short_name": "小站",
+    "short_name": "小果小站",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#333",
