@@ -1,0 +1,15 @@
+{
+    "name": "小果小站",
+    "short_name": "小站",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#333",
+    "description": "个人技术博客站点",
+    "orientation": "portrait-primary",
+    "theme_color": "#5eace0",
+    "icons": [{
+        "src": "static/avatar.png",
+        "sizes": "144x144 48x48 96x96 128x128",
+        "type": "image/png"
+    }]
+}

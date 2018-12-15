@@ -122,7 +122,13 @@ const webpackConfig = merge(baseWebpackConfig, {
       },
       // add service worker file to dist
       {
-        from: path.resolve(__dirname, '../src/sw/sw.js'),
+        from: path.resolve(__dirname, '../src/pwa/sw.js'),
+        to: config.build.assetsRoot,
+        ignore: ['.*']
+      },
+      // add manifest.json to dist
+      {
+        from: path.resolve(__dirname, '../src/pwa/manifest.json'),
         to: config.build.assetsRoot,
         ignore: ['.*']
       }

@@ -16,9 +16,12 @@ this.addEventListener('fetch', function (event) {
     caches.match(event.request).then(function (response) {
       let isGetListRequest = event.request.url.indexOf('getList') > -1
       let isIndexRequest = event.request.referrer === ''
+      let isManifestRequest = event.request.url.indexOf('manifest.json') > -1
+
+      let isSpecialRequest = isGetListRequest || isIndexRequest || isManifestRequest
 
       // 如果 Service Worker 有自己的返回，就直接返回，减少一次 http 请求
-      if (response && !isGetListRequest && !isIndexRequest) {
+      if (response && !isSpecialRequest) {
         return response
       }
 
@@ -30,7 +33,7 @@ this.addEventListener('fetch', function (event) {
         // 请求失败了，直接返回失败的结果就好了。。
         if (!httpRes || httpRes.status !== 200) {
           // 如果获取首页或getList网络请求失败，则使用缓存
-          if (response && (isGetListRequest || isIndexRequest)) {
+          if (response && isSpecialRequest) {
             return response
           }
           return httpRes
@@ -44,11 +47,12 @@ this.addEventListener('fetch', function (event) {
 
         return httpRes
       }).catch(function (error) {
-        console.log('johnny: ' + error)
         // 如果getList网络请求失败，则使用缓存
-        if (response && (isGetListRequest || isIndexRequest)) {
+        if (response && isSpecialRequest) {
+          console.info('server is not available and will use cache in service worker')
           return response
         }
+        console.error(error)
       })
     })
   )
