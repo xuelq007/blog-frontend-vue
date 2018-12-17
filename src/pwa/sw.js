@@ -42,6 +42,10 @@ this.addEventListener('fetch', function (event) {
         // 请求成功的话，将请求缓存起来。
         var responseClone = httpRes.clone()
         caches.open(OFFLINE_CACHE_NAME).then(function (cache) {
+          // service worker 离线缓存不支持POST请求
+          if (event.request.method === 'POST') {
+            return
+          }
           cache.put(event.request, responseClone)
         })
 
@@ -49,7 +53,7 @@ this.addEventListener('fetch', function (event) {
       }).catch(function (error) {
         // 如果getList网络请求失败，则使用缓存
         if (response && isSpecialRequest) {
-          console.info('server is not available and will use cache in service worker')
+          console.warn('server is not available and will use cache in service worker')
           return response
         }
         console.error(error)

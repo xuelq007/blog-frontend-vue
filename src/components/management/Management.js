@@ -66,6 +66,9 @@ export default {
 
       queryResult: '',
 
+      // pwa 发送通知内容
+      notification: '',
+
       config: {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -129,6 +132,7 @@ export default {
               message: '添加博客成功',
               type: 'success'
             })
+            self.sendNotification('xuelq007发布新博客: ' + self.ruleForm.blogName)
             self.resetForm('ruleForm')
           } else {
             self.$message.error(response.data.error || '添加博客失败')
@@ -195,6 +199,15 @@ export default {
           }
         })
         .catch(self.showError)
+    },
+
+    // pwa: 向用户发送通知
+    sendNotification (text) {
+      let notifyText = typeof text === 'string' ? text : this.notification
+      navigator.serviceWorker.getRegistration().then(registration => {
+        registration && registration.showNotification(notifyText)
+        this.notification = ''
+      })
     },
 
     showError (msg) {

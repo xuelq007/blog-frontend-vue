@@ -33,6 +33,13 @@
           </el-form-item>
       </el-form>
       <div>{{queryResult}}</div>
+
+      <div class="notification-container">
+        <el-button type="warning" :disabled="notification.length===0" @click="sendNotification">通知
+        </el-button>
+        <el-input type="textarea" :rows="2" placeholder="请输入通知内容"
+          v-model.trim="notification"></el-input>
+      </div>
   </div>
 </template>
 
