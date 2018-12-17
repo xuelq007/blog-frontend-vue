@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
+import register from './pwa/register.js'
 
 import 'element-ui/lib/theme-chalk/index.css'
 
@@ -16,7 +17,10 @@ let app = new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  beforeCreate: function () {
+    register.registePWA()
+  }
 })
 
 window.mountApp = () => {

@@ -4,6 +4,17 @@ const OFFLINE_CACHE_PREFIX = 'xuelq007_blog_page_'
 const CACHE_VERSION = 'v1.0'
 const OFFLINE_CACHE_NAME = OFFLINE_CACHE_PREFIX + CACHE_VERSION
 
+const options = {
+  // body: '',
+  icon: '../../../static/avatar.png',
+  actions: [{
+    action: 'csdn',
+    title: '去看看'
+  }],
+  tag: 'csdn-site',
+  renotify: true
+}
+
 // service worker 安装事件
 this.addEventListener('install', function (event) {
   event.waitUntil(caches.open(OFFLINE_CACHE_NAME).then(function (cache) {
@@ -39,8 +50,20 @@ this.addEventListener('fetch', function (event) {
           return httpRes
         }
 
+        // 对比getList缓存和网络返回结果，是否提示用户有新文章
+        if (isGetListRequest) {
+          Promise.all([httpRes.clone().json(), response.clone().json()]).then((jsonArry) => {
+            let httpResJSON = jsonArry[0]
+            let resJSON = jsonArry[1]
+            if (httpResJSON.length > resJSON.length) {
+              self.registration.showNotification('有新文章发布，去看看吧', options)
+            }
+          })
+        }
+
         // 请求成功的话，将请求缓存起来。
         var responseClone = httpRes.clone()
+
         caches.open(OFFLINE_CACHE_NAME).then(function (cache) {
           // service worker 离线缓存不支持POST请求
           if (event.request.method === 'POST') {
@@ -57,6 +80,27 @@ this.addEventListener('fetch', function (event) {
           return response
         }
         console.error(error)
+      })
+    })
+  )
+})
+
+// 监听提醒框自定义action事件
+this.addEventListener('notificationclick', function (e) {
+  var action = e.action
+  e.notification.close()
+
+  e.waitUntil(
+    // 获取所有clients
+    this.clients.matchAll().then(function (clients) {
+      if (!clients || clients.length === 0) {
+        this.clients.openWindow && this.clients.openWindow('https://blog.csdn.net/Napoleonxxx')
+        return
+      }
+      clients[0].focus && clients[0].focus()
+      clients.forEach(function (client) {
+        // 使用postMessage进行通信
+        client.postMessage(action)
       })
     })
   )

@@ -56,5 +56,29 @@ export default {
       }
       return result
     }
+  },
+
+  /**
+   * PWA 网站外部显示通知
+   *
+   * @param  {string} text 通知消息
+   *
+   * @return {Promise} 返回客户调用Promise
+   */
+  sendNotification (text) {
+    let options = {
+      body: text,
+      icon: '../../../static/avatar.png',
+      actions: [{
+        action: 'csdn',
+        title: '去看看'
+      }],
+      tag: 'csdn-site',
+      renotify: true
+    }
+
+    return navigator.serviceWorker.getRegistration().then(registration => {
+      registration && registration.showNotification(text, options)
+    })
   }
 }

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import store from '../../store/store.js'
+import common from '../common/common.js'
 
 const Operation = {
   Add: 3,
@@ -204,8 +205,7 @@ export default {
     // pwa: 向用户发送通知
     sendNotification (text) {
       let notifyText = typeof text === 'string' ? text : this.notification
-      navigator.serviceWorker.getRegistration().then(registration => {
-        registration && registration.showNotification(notifyText)
+      common.sendNotification(notifyText).then(() => {
         this.notification = ''
       })
     },
