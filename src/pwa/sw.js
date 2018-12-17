@@ -56,6 +56,7 @@ this.addEventListener('fetch', function (event) {
             let httpResJSON = jsonArry[0]
             let resJSON = jsonArry[1]
             if (httpResJSON.length > resJSON.length) {
+              self.registration.showNotification &&
               self.registration.showNotification('有新文章发布，去看看吧', options)
             }
           })
