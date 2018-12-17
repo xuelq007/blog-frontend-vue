@@ -51,17 +51,17 @@ this.addEventListener('fetch', function (event) {
         }
 
         // 对比getList缓存和网络返回结果，是否提示用户有新文章
-        if (isGetListRequest) {
-          Promise.all([httpRes.clone().json(), response.clone().json()]).then((jsonArry) => {
-            let httpResJSON = jsonArry[0]
-            let resJSON = jsonArry[1]
-            if (httpResJSON.length > resJSON.length) {
-              self.registration &&
-              self.registration.showNotification &&
-              self.registration.showNotification('有新文章发布，去看看吧', options)
-            }
-          })
-        }
+        // if (isGetListRequest) {
+        //   Promise.all([httpRes.clone().json(), response.clone().json()]).then((jsonArry) => {
+        //     let httpResJSON = jsonArry[0]
+        //     let resJSON = jsonArry[1]
+        //     if (httpResJSON.length > resJSON.length) {
+        //       self.registration &&
+        //       self.registration.showNotification &&
+        //       self.registration.showNotification('有新文章发布，去看看吧', options)
+        //     }
+        //   })
+        // }
 
         // 请求成功的话，将请求缓存起来。
         var responseClone = httpRes.clone()
