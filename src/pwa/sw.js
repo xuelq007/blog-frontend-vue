@@ -50,6 +50,10 @@ this.addEventListener('fetch', function (event) {
           return httpRes
         }
 
+        // Mac safari service worker上下文环境中没有Notification. window上下文环境中可调
+        // if (isGetListRequest) {
+        //   new Notification('有新文章发布，去看看吧', options)
+        // }
         // 对比getList缓存和网络返回结果，是否提示用户有新文章
         try {
           if (isGetListRequest) {

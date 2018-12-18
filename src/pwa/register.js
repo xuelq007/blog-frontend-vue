@@ -1,6 +1,6 @@
 
 function registeNotification () {
-  if (!('PushManager' in window)) {
+  if (!('Notification' in window)) {
     // Push isn't supported on this browser, disable or hide UI.
     return
   }

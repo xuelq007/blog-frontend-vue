@@ -11,6 +11,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const SkeletonWebpackPlugin = require('vue-skeleton-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -138,7 +139,9 @@ const webpackConfig = merge(baseWebpackConfig, {
     new SkeletonWebpackPlugin({
       webpackConfig: require('./webpack.skeleton.conf'),
       quiet: true
-    })
+    }),
+
+    new CleanWebpackPlugin(['dist'])
   ]
 })
 

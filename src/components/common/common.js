@@ -76,7 +76,8 @@ export default {
       tag: 'csdn-site',
       renotify: true
     }
-
+    // TODO: 兼容性 safari通知接口
+    // return new Notification(text, options)
     return navigator.serviceWorker.getRegistration().then(registration => {
       registration && registration.showNotification(text, options)
     })
