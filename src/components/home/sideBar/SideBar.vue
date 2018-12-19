@@ -14,7 +14,7 @@
                 <p class="header-subtitle">自留地整理知识点</p>
                 <nav class="header-menu">
                     <ul>
-                        <li><a href="/">主页</a></li>
+                        <li><a target="_blank" rel="noopener" href="https://xuelq007.com/report/">网站性能</a></li>
                     </ul>
                 </nav>
                 <nav class="header-smart-menu">
