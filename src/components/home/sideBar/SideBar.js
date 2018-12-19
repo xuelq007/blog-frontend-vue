@@ -1,6 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import store from '../../../store/store.js'
+import 'element-ui/lib/theme-chalk/index.css'
 
 export default {
   name: 'SideBar',
