@@ -15,10 +15,10 @@
             <p class="header-subtitle">自留地整理知识点</p>
             <nav class="header-nav">
               <div class="social">
-                  <a class="github" target="_blank" href="https://github.com/xuelq007" title="github">
+                  <a class="github" target="_blank" rel="noopener" href="https://github.com/xuelq007" title="github">
                     <i class="iconfont icon-github"></i>
                   </a>
-                  <a class="github" target="_blank" href="https://blog.csdn.net/Napoleonxxx" title="csdn">
+                  <a class="github" target="_blank" rel="noopener" href="https://blog.csdn.net/Napoleonxxx" title="csdn">
                     <i class="iconfont icon-csdn"></i>
                   </a>
               </div>
@@ -39,7 +39,7 @@
                   <h2>{{category}}</h2>
                   <div v-for="(blog, index) in blogList" :key="index">
                     <p>
-                      <a target="_blank" :href="blog.link">
+                      <a target="_blank" rel="noopener" :href="blog.link">
                         {{blog.name}}
                       </a>
                     </p>
