@@ -6,7 +6,7 @@
         <div class="intrude-less">
             <header class="header">
                 <a href="/" class="profileImg">
-                    <img src="../../../assets/avatar.jpg" class="avatar">
+                    <img src="../../../assets/avatar.jpg" class="avatar" alt="网站图标">
                 </a>
                 <hgroup>
                     <h1 class="header-author"><a href="/">辰辰沉沉大辰沉</a></h1>

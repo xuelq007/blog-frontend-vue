@@ -7,7 +7,7 @@
           </div>
           <header class="header">
             <div class="profilepic">
-              <img class="avatar" src="../../../assets/avatar.jpg">
+              <img class="avatar" src="../../../assets/avatar.jpg" alt="网站图标">
             </div>
             <hgroup>
               <h1 class="header-author">辰辰沉沉大辰沉</h1>
