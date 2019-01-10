@@ -13,7 +13,8 @@ export default {
     let testDom = document.querySelector('.goTop')
     testDom.addEventListener('click', this.scrollTop)
 
-    this.scrollHandler = common.throttle(this.scrollHandler, 100)
+    // 用requestAnimationForm的方式节流
+    this.scrollHandler = common.throttleRaf(this.scrollHandler, 100)
     window.addEventListener('scroll', this.scrollHandler, false)
   },
 
